@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jayson F. De Guzman | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h2>Jayson F. De Guzman Portfolio</h2>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#java-code">Java Code</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <img src="/profile.jpg"
+         alt="Jayson F. De Guzman"
+         class="profile-picture">
+
+        <h1>Hello! I'm <span>Jayson F. De Guzman</span></h1>
+        <h3>Creative Thinker | Aspiring Developer
+
+</h3>
+        <p>
+            Welcome to my personal portfolio website.
+            I am an Information Technology student
+            passionate about technology and learning new skills.
+        </p>
+        <a href="#about" class="btn">Explore My Portfolio</a>
+    </section>
+
+    <section id="about" class="section">
+        <h2>Personal Information</h2>
+        <div class="card">
+            <p><strong>Full Name:</strong> Jayson F. De Guzman</p>
+            <p><strong>Course:</strong> Bachelor of Science in Information Technology</p>
+            <p><strong>School:</strong> Our Lady of the Sacred Heart College of Guimba</p>
+            <p><strong>Email:</strong> jaysonjfedericodeguzman@gmail.com</p>
+
+            <h3>About Me</h3>
+            <p>
+                I’m Jayson F. De Guzman, an Information Technology student who sees technology as more than just computers and codes—it is a space where creativity meets possibilities.
+What makes me different is my interest in both technical and creative work. I enjoy editing because it allows me to transform simple ideas into something meaningful and visually appealing. At the same time, I am exploring programming, where I can turn ideas into something functional and useful.
+I may still be developing my expertise, but I value the process of figuring things out, experimenting with new approaches, and learning from every mistake. I don't aim to know everything; I aim to keep improving and create work that reflects my effort, creativity, and determination.
+            </p>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <h2>Educational Background</h2>
+        <div class="card">
+            <h3>Our Lady of the Sacred Heart College of Guimba</h3>
+            <p>Bachelor of Science in Information Technology (BSIT)</p>
+            <p>College Student</p>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <h3>Editing</h3>
+                <p>Creative editing and presentation skills.</p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Computer Skills</h3>
+                <p>Basic computer operation and application usage.</p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Programming</h3>
+                <p>Learning programming fundamentals and coding.</p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Communication</h3>
+                <p>Willingness to collaborate and work with others.</p>
+            </div>
+        </div>
+    </section>
+
+
+<section id="java-code" class="section">
+    <h2>Java Programming Project</h2>
+
+    <div class="card">
+        <h3>Tic-Tac-Toe Game</h3>
+
+        <p>
+            This is my Java console-based Tic-Tac-Toe game
+            developed as part of my CC102 Final Performance Task.
+            It allows two players to take turns placing X and O
+            on a 3x3 game board. The game checks for a winner
+            or a draw.
+        </p>
+
+        <h3>Programming Language</h3>
+        <p>Java</p>
+
+        <h3>Project Features</h3>
+        <ul>
+            <li>Two-player gameplay</li>
+            <li>3x3 game board</li>
+            <li>Checks winning combinations</li>
+            <li>Detects a draw</li>
+            <li>Validates player input</li>
+        </ul>
+
+        <a href="java-game/TicTacToe.java"
+           class="btn"
+           target="_blank">
+            View Java Source Code
+        </a>
+
+        <a href="java-game/TicTacToe.java"
+           class="btn"
+           download>
+            Download Java File
+        </a>
+        <h3>Java Source Code</h3>
+
+<pre><code>
+
+import java.util.Scanner;
+
+public class TicTacToe {
+
+    static char[][] board = new char[3][3];
+    static char currentPlayer = 'X';
+
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        System.out.println("================================");
+        System.out.println("       TIC-TAC-TOE GAME");
+        System.out.println("================================");
+
+        boolean playAgain = true;
+
+        while (playAgain) {
+
+            initializeBoard();
+
+            boolean gameOver = false;
+
+            while (!gameOver) {
+
+                displayBoard();
+
+                System.out.println("Player " + currentPlayer + "'s turn.");
+
+                int row = getValidInput("Enter row (1-3): ");
+                int col = getValidInput("Enter column (1-3): ");
+
+                // Check if the selected space is available
+                if (board[row - 1][col - 1] != ' ') {
+                    System.out.println("That space is already occupied!");
+                    System.out.println("Please choose another space.\n");
+                    continue;
+                }
+
+                // Place the player's mark
+                board[row - 1][col - 1] = currentPlayer;
+
+                // Check if the current player wins
+                if (checkWinner()) {
+
+                    displayBoard();
+
+                    System.out.println("Congratulations!");
+                    System.out.println("Player " + currentPlayer + " wins!");
+
+                    gameOver = true;
+
+                } else if (checkDraw()) {
+
+                    displayBoard();
+
+                    System.out.println("The game is a draw!");
+
+                    gameOver = true;
+
+                } else {
+
+                    // Switch to the other player
+                    switchPlayer();
+                }
+            }
+
+            System.out.print("\nDo you want to play again? (Y/N): ");
+
+            String choice = input.next();
+
+            if (!choice.equalsIgnoreCase("Y")) {
+                playAgain = false;
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("================================");
+        System.out.println(" Thank you for playing!");
+        System.out.println("================================");
+
+        input.close();
+    }
+
+    // Initialize all board spaces
+    public static void initializeBoard() {
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                board[row][col] = ' ';
+            }
+        }
+
+        currentPlayer = 'X';
+    }
+
+    // Display the game board
+    public static void displayBoard() {
+
+        System.out.println("\n       TIC-TAC-TOE");
+        System.out.println();
+
+        for (int row = 0; row < 3; row++) {
+
+            System.out.print("   ");
+
+            for (int col = 0; col < 3; col++) {
+
+                System.out.print(" " + board[row][col] + " ");
+
+                if (col < 2) {
+                    System.out.print("|");
+                }
+            }
+
+            System.out.println();
+
+            if (row < 2) {
+                System.out.println("   ---+---+---");
+            }
+        }
+
+        System.out.println();
+    }
+
+    // Get valid row and column input
+    public static int getValidInput(String message) {
+
+        int number;
+
+        while (true) {
+
+            System.out.print(message);
+
+            if (input.hasNextInt()) {
+
+                number = input.nextInt();
+
+                if (number >= 1 && number <= 3) {
+                    return number;
+                }
+
+                System.out.println("Invalid input! Enter a number from 1 to 3.");
+
+            } else {
+
+                System.out.println("Invalid input! Please enter a number.");
+
+                input.next();
+            }
+        }
+    }
+
+    // Check all possible winning combinations
+    public static boolean checkWinner() {
+
+        // Check rows
+        for (int row = 0; row < 3; row++) {
+
+            if (board[row][0] == currentPlayer &&
+                board[row][1] == currentPlayer &&
+                board[row][2] == currentPlayer) {
+
+                return true;
+            }
+        }
+
+        // Check columns
+        for (int col = 0; col < 3; col++) {
+
+            if (board[0][col] == currentPlayer &&
+                board[1][col] == currentPlayer &&
+                board[2][col] == currentPlayer) {
+
+                return true;
+            }
+        }
+
+        // Check diagonal from top-left to bottom-right
+        if (board[0][0] == currentPlayer &&
+            board[1][1] == currentPlayer &&
+            board[2][2] == currentPlayer) {
+
+            return true;
+        }
+
+        // Check diagonal from top-right to bottom-left
+        if (board[0][2] == currentPlayer &&
+            board[1][1] == currentPlayer &&
+            board[2][0] == currentPlayer) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // Check if all spaces are occupied
+    public static boolean checkDraw() {
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+
+                if (board[row][col] == ' ') {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    // Switch between Player X and Player O
+    public static void switchPlayer() {
+
+        if (currentPlayer == 'X') {
+            currentPlayer = 'O';
+        } else {
+            currentPlayer = 'X';
+        }
+    }
+}
+
+</code></pre>
+    </div>
+</section>
+
+    <section id="contact" class="section">
+        <h2>Contact Me</h2>
+        <div class="card">
+            <p>Email:
+                <a href="mailto:jaysonjfedericodeguzman@gmail.com">
+                    jaysonjfedericodeguzman@gmail.com
+                </a>
+            </p>
+            <p>Thank you for visiting my portfolio!</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jayson F. De Guzman | Junior Programmer Portfolio</p>
+    </footer>
+
+</body>
+</html>
