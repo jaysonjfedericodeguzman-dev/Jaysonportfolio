@@ -24,7 +24,7 @@
         </nav>
     </header>
 
-    <section id="home" class="hero">
+    <section id="home" class="hero page-section active">
         <img src="/profile.jpg"
          alt="Jayson F. De Guzman"
          class="profile-picture">
@@ -41,7 +41,7 @@
         <a href="#about" class="btn">Explore My Portfolio</a>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section page-section">
         <h2>Personal Information</h2>
         <div class="card">
             <p><strong>Full Name:</strong> Jayson F. De Guzman</p>
@@ -58,7 +58,7 @@ I may still be developing my expertise, but I value the process of figuring thin
         </div>
     </section>
 
-    <section id="education" class="section">
+    <section id="education" class="section page-section">
         <h2>Educational Background</h2>
         <div class="card">
             <h3>Our Lady of the Sacred Heart College of Guimba</h3>
@@ -67,7 +67,7 @@ I may still be developing my expertise, but I value the process of figuring thin
         </div>
     </section>
 
-    <section id="skills" class="section">
+    <section id="skills" class="section page-section">
         <h2>My Skills</h2>
         <div class="skills-container">
             <div class="skill-card">
@@ -93,7 +93,7 @@ I may still be developing my expertise, but I value the process of figuring thin
     </section>
 
 
-<section id="java-code" class="section">
+<section id="java-code" class="section page-section">
     <h2>Java Programming Project</h2>
 
     <div class="card">
@@ -362,7 +362,7 @@ public class TicTacToe {
     </div>
 </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section page-section">
         <h2>Contact Me</h2>
         <div class="card">
             <p>Email:
@@ -377,6 +377,29 @@ public class TicTacToe {
     <footer>
         <p>&copy; 2026 Jayson F. De Guzman | Junior Programmer Portfolio</p>
     </footer>
+
+<script>
+    const menuLinks = document.querySelectorAll('.navbar a');
+    const sections = document.querySelectorAll('.page-section');
+
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
